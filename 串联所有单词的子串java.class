@@ -1,0 +1,45 @@
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+public class SubstringWithConcatenationOfAllWords {
+
+  public static List<Integer> findSubstring(String s, String[] words) {
+    Map<String, Integer> wordMap = new HashMap<>();
+    for (String word : words) {
+      wordMap.put(word, wordMap.getOrDefault(word, 0) + 1);
+    }
+
+    int wordCount = words.length;
+    int wordLen = words[0].length();
+    List<Integer> res = new ArrayList<>();
+
+    for (int i = 0; i < s.length() - wordCount * wordLen + 1; i++) {
+      Map<String, Integer> seen = new HashMap<>();
+      int j = i;
+      boolean ok = true;
+      while (j < s.length() && ok) {
+        String word = s.substring(j, j + wordLen);
+        if (!wordMap.containsKey(word) || seen.getOrDefault(word, 0) >= wordMap.get(word)) {
+          ok = false;
+          break;
+        }
+        seen.put(word, seen.getOrDefault(word, 0) + 1);
+        j += wordLen;
+      }
+      if (ok) {
+        res.add(i);
+      }
+    }
+
+    return res;
+  }
+
+  public static void main(String[] args) {
+    String s = "barfoothefoobarman";
+    String[] words = {"foo", "bar"};
+    List<Integer> res = findSubstring(s, words);
+    System.out.println(res);
+  }
+}
