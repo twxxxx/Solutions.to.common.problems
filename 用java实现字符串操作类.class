@@ -1,0 +1,111 @@
+// 定义一个字符串操作类
+public class StringOperation {
+    // 定义一个私有的字符串变量
+    private String text;
+
+    // 定义一个构造方法，接受一个字符串参数
+    public StringOperation(String text) {
+        this.text = text;
+    }
+
+    // 定义一个方法，返回字符串的长度
+    public int length() {
+        return text.length();
+    }
+
+    // 定义一个方法，返回字符串的反转
+    public String reverse() {
+        return new StringBuilder(text).reverse().toString();
+    }
+
+    // 定义一个方法，返回字符串中指定索引的字符
+    public char charAt(int index) {
+        return text.charAt(index);
+    }
+
+    // 定义一个方法，返回字符串是否包含指定的子串
+    public boolean contains(String sub) {
+        return text.contains(sub);
+    }
+
+    // 定义一个方法，返回字符串是否以指定的前缀开头
+    public boolean startsWith(String prefix) {
+        return text.startsWith(prefix);
+    }
+
+    // 定义一个方法，返回字符串是否以指定的后缀结尾
+    public boolean endsWith(String suffix) {
+        return text.endsWith(suffix);
+    }
+
+    // 定义一个方法，返回字符串中第一次出现指定子串的索引，如果不存在则返回-1
+    public int indexOf(String sub) {
+        return text.indexOf(sub);
+    }
+
+    // 定义一个方法，返回字符串中最后一次出现指定子串的索引，如果不存在则返回-1
+    public int lastIndexOf(String sub) {
+        return text.lastIndexOf(sub);
+    }
+
+    // 定义一个方法，返回字符串中指定范围的子串
+    public String substring(int beginIndex, int endIndex) {
+        return text.substring(beginIndex, endIndex);
+    }
+
+    // 定义一个方法，返回字符串中所有指定字符替换为新字符后的结果
+    public String replace(char oldChar, char newChar) {
+        return text.replace(oldChar, newChar);
+    }
+
+    // 定义一个方法，返回字符串中所有匹配指定正则表达式的子串替换为新子串后的结果
+    public String replaceAll(String regex, String replacement) {
+        return text.replaceAll(regex, replacement);
+    }
+
+    // 定义一个方法，返回字符串按照指定正则表达式分割后的字符串数组
+    public String[] split(String regex) {
+        return text.split(regex);
+    }
+
+    // 定义一个方法，返回字符串转换为大写后的结果
+    public String toUpperCase() {
+        return text.toUpperCase();
+    }
+
+    // 定义一个方法，返回字符串转换为小写后的结果
+    public String toLowerCase() {
+        return text.toLowerCase();
+    }
+
+    // 定义一个方法，返回字符串去除首尾空白后的结果
+    public String trim() {
+        return text.trim();
+    }
+}
+
+// 测试代码
+public class TestStringOperation {
+    
+     public static void main(String []args){
+        // 创建一个StringOperation对象，传入一个测试字符串
+        StringOperation so = new StringOperation("Hello World!");
+        
+        // 调用各种方法，并打印结果
+        System.out.println("Length: " + so.length());
+        System.out.println("Reverse: " + so.reverse());
+        System.out.println("Char at 4: " + so.charAt(4));
+        System.out.println("Contains 'or': " + so.contains("or"));
+        System.out.println("Starts with 'He': " + so.startsWith("He"));
+        System.out.println("Ends with '!': " + so.endsWith("!"));
+        System.out.println("Index of 'o': " + so.indexOf("o"));
+        System.out.println("Last index of 'o': " + so.lastIndexOf("o"));
+        System.out.println("Substring from 3 to 8: " + so.substring(3, 8));
+        System.out.println("Replace 'l' with 'x': " + so.replace('l', 'x'));
+        System.out.println("Replace all 'o' with '0': " + so.replaceAll("o", "0"));
+        System.out.println("Split by ' ': " + Arrays.toString(so.split(" ")));
+        System.out.println("To upper case: " + so.toUpperCase());
+        System.out.println("To lower case: " + so.toLowerCase());
+        System.out.println("Trim: " + so.trim());
+     }
+}
