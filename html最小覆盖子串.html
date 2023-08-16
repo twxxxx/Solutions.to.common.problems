@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Minimum Substring</title>
+</head>
+<body>
+<h1>Minimum Substring</h1>
+<p>This is a simple HTML page that implements the minimum substring algorithm.</p>
+<p>The input string is "ADOBECODEBANC" and the pattern string is "ABC".</p>
+<p>The minimum substring is "BANC".</p>
+<script>
+function minWindow(s, t) {
+  var m = s.length;
+  var n = t.length;
+  if (m < n) {
+    return "";
+  }
+
+  // 构造一个哈希表，记录t中每个字符出现的次数。
+  var need = {};
+  for (var i = 0; i < n; i++) {
+    need[t[i]] = need[t[i]] || 0;
+    need[t[i]]++;
+  }
+
+  // 构造一个滑动窗口，记录s中当前窗口中每个字符出现的次数。
+  var have = {};
+  var left = 0;
+  var right = 0;
+  var minLen = m + 1;
+  var minStart = -1;
+
+  for (right = 0; right < m; right++) {
+    have[s[right]] = have[s[right]] || 0;
+    have[s[right]]++;
+
+    // 如果窗口中包含了t中所有的字符，则开始收缩窗口。
+    while (Object.keys(need).every(function(key) {
+      return have[key] >= need[key];
+    })) {
+      if (right - left + 1 < minLen) {
+        minLen = right - left + 1;
+        minStart = left;
+      }
+
+      have[s[left]]--;
+      left++;
+    }
+  }
+
+  if (minStart == -1) {
+    return "";
+  } else {
+    return s.substring(minStart, minStart + minLen);
+  }
+}
+
+var s = "ADOBECODEBANC";
+var t = "ABC";
+
+var minSubstr = minWindow(s, t);
+
+document.getElementById("minSubstr").innerHTML = minSubstr;
+</script>
+<div id="minSubstr"></div>
+</body>
+</html>
