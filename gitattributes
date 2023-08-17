@@ -1,0 +1,8 @@
+*cc linguist-language=c++
+*java linguist-language=java
+*php linguist-language=php
+*go linguist-language=go
+*js linguist-language=javascript
+*py linguist-language=python
+*c linguist-language=c#
+*html linguist-language=html
